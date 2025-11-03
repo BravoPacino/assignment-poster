@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools & Academic Integrity - Interactive Poster</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .poster {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #667eea;
+        }
+        
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .case-scenario {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 6px solid #667eea;
+        }
+        
+        .case-scenario h2 {
+            color: #2d3748;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .case-scenario p {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section h2 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+                
+        .stakeholders {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .stakeholder-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .stakeholder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .stakeholder-card h3 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+        
+        .stakeholder-card ul {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+        
+        .stakeholder-card li {
+            margin-bottom: 5px;
+        }
+        
+        .ethical-issues {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .issue-tag {
+            background: linear-gradient(135deg, #ff8800c1 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9em;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Interactive Ethics Section */
+        .ethics-codes {
+            background: #f7fafc;
+            border: 3px solid #667eea;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .ethics-codes h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .codes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .code-box {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .code-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #66ea96 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        
+        .code-title {
+            flex: 1;
+        }
+        
+        .code-title h3 {
+            color: #2d3748;
+            font-size: 1.3em;
+            margin-bottom: 3px;
+        }
+        
+        .code-title p {
+            color: #718096;
+            font-size: 0.85em;
+        }
+        
+        .principles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .principle-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .principle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .principle-button:active {
+            transform: translateY(0);
+        }
+        
+        .principle-icon {
+            font-size: 1.2em;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .modal-header h3 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin: 0;
+        }
+        
+        .close-button {
+            background: #ff0000;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            min-width: 35px;
+            min-height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            padding: 0;
+            line-height: 1;
+        }
+        
+        .close-button:hover {
+            background: #c53030;
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            color: #4a5568;
+            line-height: 1.8;
+        }
+        
+        .modal-body h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin: 15px 0 10px 0;
+        }
+        
+        .modal-body p {
+            margin-bottom: 15px;
+        }
+        
+        .modal-body ul {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .highlight-box strong {
+            color: #22543d;
+        }
+        
+        .solutions {
+            background: #f0fff4;
+            border: 2px solid #68d391;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .solutions h2 {
+            color: #22543d;
+            margin-bottom: 15px;
+        }
+        
+        .solution-list {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .solution-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+        
+        .solution-number {
+            background: #48bb78;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .solution-text {
+            color: #2d3748;
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            color: #718096;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .poster {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .principle-button {
+                pointer-events: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .poster {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="header">
+            <h1>AI Tools & Academic Integrity</h1>
+            <p class="subtitle">Navigating the Ethics of AI-Assisted Learning</p>
+        </div>
+        
+        <div class="case-scenario">
+            <h2>📋 Case Scenario</h2>
+            <p>Students use AI writing tools (e.g., ChatGPT) for assignments without acknowledgment. Is this academic dishonesty or an acceptable learning aid?</p>
+        </div>
+        
+        <div class="section">
+            <h2><span class="icon">👥</span> Key Stakeholders</h2>
+            <div class="stakeholders">
+                <div class="stakeholder-card">
+                    <h3>🎓 Student's Perspective</h3>
+                    <ul>
+                        <li>AI helps with grammar, ideas, and learning</li>
+                        <li>Some use AI for guidance, not to copy</li>
+                        <li>Need for responsible and transparent use</li>
+                    </ul>
+                </div>
+                
+                <div class="stakeholder-card">
+                    <h3>👨‍🏫 Lecturer's Perspective</h3>
+                    <ul>
+                        <li>Concern about originality and critical thinking</li>
+                        <li>Unfair to students who work independently</li>
+                        <li>Difficult to assess real understanding</li>
+                        <li>Should teach ethical AI use instead of banning</li>
+                    </ul>
+                </div>
+                
+                <div class="stakeholder-card">
+                    <h3>🏛️ Administrator's Perspective</h3>
+                    <ul>
+                        <li>Must protect academic reputation</li>
+                        <li>Total ban not practical; AI is part of modern learning</li>
+                        <li>Create clear policies on when and how to use AI</li>
+                        <li>Educate students and staff about responsible AI use</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Different Responses</h2>
+            <div class="ethical-issues">
+                <div class="issue-tag">If Ignored: Loss of Skills</div>
+                <div class="issue-tag">Unfair Advantage</div>
+                <div class="issue-tag">Loss of Honesty</div>
+                <div class="issue-tag">If Banned: Miss Innovation</div>
+                <div class="issue-tag">Limits Technology Use</div>
+            </div>
+        </div>
+        
+        <!-- Interactive Ethics Codes Section -->
+        <div class="ethics-codes">
+            <h2><span class="icon">⚖️</span> Professional Codes of Ethics - Click to Learn More!</h2>
+            <div class="codes-container">
+                <!-- ACM Code -->
+                <div class="code-box">
+                    <div class="code-header">
+                        <div class="code-logo">ACM</div>
+                        <div class="code-title">
+                            <h3>ACM Code</h3>
+                            <p>Association for Computing Machinery</p>
+                        </div>
+                    </div>
+                    <div class="principles-list">
+                        <button class="principle-button" onclick="openModal('acm13')">
+                            <span>Principle 1.3: Be Honest & Trustworthy</span>
+                            <span class="principle-icon">👆</span>
+                        </button>
+                        <button class="principle-button" onclick="openModal('acm15')">
+                            <span>Principle 1.5: Respect the Work</span>
+                            <span class="principle-icon">👆</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- IEEE Code -->
+                <div class="code-box">
+                    <div class="code-header">
+                        <div class="code-logo">IEEE</div>
+                        <div class="code-title">
+                            <h3>IEEE Code</h3>
+                            <p>Institute of Electrical and Electronics Engineers</p>
+                        </div>
+                    </div>
+                    <div class="principles-list">
+                        <button class="principle-button" onclick="openModal('ieee')">
+                            <span>Core Principles: Integrity & Honesty</span>
+                            <span class="principle-icon">👆</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="solutions">
+            <h2><span class="icon">✅</span> Recommended Solutions</h2>
+            <div class="solution-list">
+                <div class="solution-item">
+                    <div class="solution-number">1</div>
+                    <div class="solution-text">
+                        <strong>Clear AI Use Policy:</strong> Develop transparent guidelines specifying when and how AI tools can be used, with required disclosure statements
+                    </div>
+                </div>
+                
+                <div class="solution-item">
+                    <div class="solution-number">2</div>
+                    <div class="solution-text">
+                        <strong>Education & Training:</strong> Teach students ethical AI use, critical evaluation of AI outputs, and proper attribution methods
+                    </div>
+                </div>
+                
+                <div class="solution-item">
+                    <div class="solution-number">3</div>
+                    <div class="solution-text">
+                        <strong>Assessment Redesign:</strong> Create AI-resistant assessments (e.g., oral presentations, in-class work, reflective journals)
+                    </div>
+                </div>
+                
+                <div class="solution-item">
+                    <div class="solution-number">4</div>
+                    <div class="solution-text">
+                        <strong>Balanced Approach:</strong> Allow AI with acknowledgment and clear rules - transparency + fairness + responsibility
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Key Principle:</strong> Transparency turns AI from plagiarism into a legitimate learning tool</p>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div id="modal-acm13" class="modal" onclick="closeModalOnOutsideClick(event, 'modal-acm13')">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ACM Principle 1.3: Be Honest and Trustworthy</h3>
+                <button class="close-button" onclick="closeModal('modal-acm13')">×</button>
+            </div>
+            <div class="modal-body">
+                <h4>📜 Full Principle Statement:</h4>
+                <p><em>"Honesty is an essential component of trustworthiness. A computing professional should be honest about their qualifications, and about any limitations in their competence to complete a task."</em></p>
+                
+                <div class="highlight-box">
+                    <strong>What This Means for AI Use:</strong>
+                    <p>When students submit AI-generated text without acknowledgment, they are claiming work that is not theirs. This violates the fundamental principle of honesty.</p>
+                </div>
+                
+                <h4>🎯 Application to Our Scenario:</h4>
+                <ul>
+                    <li><strong>The Problem:</strong> Using ChatGPT to write assignments without disclosure = presenting AI capabilities as your own</li>
+                    <li><strong>Why It Matters:</strong> You're telling your lecturer "I wrote this" when you didn't</li>
+                    <li><strong>The Violation:</strong> This is dishonest representation of your work and competence</li>
+                </ul>
+                
+                <h4>✅ Ethical Alternative:</h4>
+                <p>Be transparent about AI use: "This draft was developed with assistance from ChatGPT for brainstorming and structure. Final analysis and synthesis are my own work."</p>
+                
+                <div class="highlight-box">
+                    <strong>Remember:</strong> Professional integrity starts with honesty about what you can and cannot do independently.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-acm15" class="modal" onclick="closeModalOnOutsideClick(event, 'modal-acm15')">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ACM Principle 1.5: Respect the Work Required to Produce New Ideas</h3>
+                <button class="close-button" onclick="closeModal('modal-acm15')">×</button>
+            </div>
+            <div class="modal-body">
+                <h4>📜 Full Principle Statement:</h4>
+                <p><em>"Developing new ideas, inventions, creative works, and computing artifacts creates value for society, and those who expend this effort should expect to gain value from their work. Computing professionals should therefore credit the creators of ideas, inventions, work, and artifacts, and respect copyrights, patents, trade secrets, license agreements, and other methods of protecting authors' works."</em></p>
+                
+                <div class="highlight-box">
+                    <strong>What This Means for AI Use:</strong>
+                    <p>When you use AI shortcuts without disclosure, you disrespect both the learning process and peers who did the work themselves.</p>
+                </div>
+                
+                <h4>🎯 Application to Our Scenario:</h4>
+                <ul>
+                    <li><strong>Respect for Learning:</strong> Education requires effort to develop skills and understanding</li>
+                    <li><strong>Respect for Peers:</strong> Your classmates who work independently deserve fair evaluation</li>
+                    <li><strong>Respect for Process:</strong> Critical thinking and analysis skills require practice and struggle</li>
+                    <li><strong>Respect for Attribution:</strong> AI-generated content should be acknowledged, just like any other source</li>
+                </ul>
+                
+                <h4>⚠️ What Gets Disrespected:</h4>
+                <ul>
+                    <li>The intellectual effort required to master concepts</li>
+                    <li>The time and work your classmates invested</li>
+                    <li>The educational process designed to develop your capabilities</li>
+                    <li>Your own future professional competence</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <strong>Key Insight:</strong> Using AI without acknowledgment doesn't just disrespect the tool—it disrespects the entire learning process and everyone engaged in it honestly.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-ieee" class="modal" onclick="closeModalOnOutsideClick(event, 'modal-ieee')">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>IEEE Code of Ethics: Integrity, Honesty & Responsibility</h3>
+                <button class="close-button" onclick="closeModal('modal-ieee')">×</button>
+            </div>
+            <div class="modal-body">
+                <h4>📜 Key IEEE Principles:</h4>
+                
+                <p><strong>1. To uphold the highest standards of integrity, responsible behavior, and ethical conduct in professional activities</strong></p>
+                <ul>
+                    <li>Engineers must maintain professional standards in all work</li>
+                    <li>Integrity is non-negotiable in technical professions</li>
+                </ul>
+                
+                <p><strong>7. To seek, accept, and offer honest criticism of technical work, to acknowledge and correct errors</strong></p>
+                <ul>
+                    <li>Peers must be able to honestly critique your work</li>
+                    <li>If AI did the work, can peers evaluate YOUR understanding?</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <strong>What This Means for AI Use:</strong>
+                    <p>Using AI without citation breaks both honesty and the foundation of peer review. Engineers can't fake their work—lives and safety depend on it.</p>
+                </div>
+                
+                <h4>🎯 Application to Our Scenario:</h4>
+                <ul>
+                    <li><strong>Integrity:</strong> Present work honestly, including any AI assistance</li>
+                    <li><strong>Responsibility:</strong> Take ownership of your learning and professional development</li>
+                    <li><strong>Honest Criticism:</strong> Enable peers and instructors to evaluate your actual capabilities</li>
+                    <li><strong>Professional Standards:</strong> Build habits now that align with career expectations</li>
+                </ul>
+                
+                <h4>🏭 Real-World Context:</h4>
+                <p>In engineering practice:</p>
+                <ul>
+                    <li>Engineers use CAD software, simulation tools, and AI assistants</li>
+                    <li>They ALWAYS document which tools were used and how</li>
+                    <li>Reports state: "Analysis performed using [tool name]"</li>
+                    <li>Professional responsibility requires transparency</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <strong>Critical Point:</strong> IEEE doesn't ban tools—it requires honest use of them. The same standard applies to AI: use it, but be transparent about it.
+                </div>
+                
+                <h4>⚖️ Why This Matters:</h4>
+                <p>Unlike other fields, engineering errors can result in:</p>
+                <ul>
+                    <li>Structural failures and loss of life</li>
+                    <li>Safety hazards and public harm</li>
+                    <li>Environmental damage</li>
+                    <li>Financial losses and legal liability</li>
+                </ul>
+                <p><strong>Therefore:</strong> The habits you build as a student become the professional standards you practice as an engineer. Integrity cannot be compromised.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById('modal-' + modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
